@@ -1,0 +1,10 @@
+Django==3.1.7
+django-cors-headers==3.4.0
+django-environ==0.4.5
+djangorestframework==3.12.2
+drf-yasg==1.20.0
+Pillow==6.2.2
+psycopg2-binary==2.8.6
+six==1.14.0
+drf-extra-fields==3.0.3
+djangorestframework-simplejwt==4.6.0
