@@ -1,14 +1,15 @@
-from rest_framework import permissions, status, parsers
+from rest_framework import status, parsers
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from utils.base_viewset import BaseModelViewSet
 
 from .serializers import RealtyListSerializer, RealtySerializer, ClientListSerializer, ClientSerializer
 from .models import Category, Realty, RealtyImage, Client
+from utils.permissions import RealtyPermission, IsOwnerOrReadOnly
 
 
 class RealtyViewSet(BaseModelViewSet):
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [RealtyPermission, IsOwnerOrReadOnly]
     parser_classes = (parsers.MultiPartParser, parsers.FormParser,)
     queryset = Realty.objects.all()
 
@@ -34,7 +35,7 @@ class RealtyViewSet(BaseModelViewSet):
 
 
 class ClientViewSet(BaseModelViewSet):
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [IsOwnerOrReadOnly]
     queryset = Client.objects.all()
 
     default_serializer_class = ClientSerializer
